@@ -9,7 +9,6 @@ import '/features/_features.dart'
         SearchBloc,
         SearchState,
         SearchLoaded,
-        SearchLoading,
         SearchError,
         MobileNewsScreen,
         TabletNewsScreen,
@@ -24,10 +23,6 @@ class SearchedNewsBody extends StatelessWidget {
 
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        if (state is SearchLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
         if (state is SearchError) {
           return Center(child: Text('Error: ${state.message}'));
         }

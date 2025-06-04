@@ -27,7 +27,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       return;
     }
 
-    // emit(SearchLoading());
     final result = await getSearchedNewsUseCase(
       EverythingQueryParameters(q: query),
     );

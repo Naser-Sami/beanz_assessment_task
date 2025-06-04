@@ -1,16 +1,37 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
 import 'source.dart';
 
+part 'article.g.dart';
+
+@HiveType(typeId: 1)
 class Article extends Equatable {
+  @HiveField(0)
   final String uuid;
+
+  @HiveField(1)
   final Source source;
+
+  @HiveField(2)
   final String author;
+
+  @HiveField(3)
   final String title;
+
+  @HiveField(4)
   final String description;
+
+  @HiveField(5)
   final String url;
+
+  @HiveField(6)
   final String urlToImage;
+
+  @HiveField(7)
   final String publishedAt;
+
+  @HiveField(8)
   final String content;
 
   const Article({

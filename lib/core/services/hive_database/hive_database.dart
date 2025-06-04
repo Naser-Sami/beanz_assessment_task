@@ -1,5 +1,8 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '/features/_features.dart'
+    show NewsAdapter, ArticleAdapter, SourceAdapter;
+
 abstract class IHiveService<T> {
   Future<void> init();
   Future<void> put(dynamic key, T item);
@@ -19,6 +22,10 @@ class HiveService<T> implements IHiveService<T> {
   @override
   Future<void> init() async {
     if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(NewsAdapter());
+      Hive.registerAdapter(ArticleAdapter());
+      Hive.registerAdapter(SourceAdapter());
+
       // Register other adapters here if needed
     }
 

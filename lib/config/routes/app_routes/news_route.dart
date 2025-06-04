@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '/features/_features.dart' show NewsScreen, NewsDetailsScreen, NewsCubit;
+import '/core/_core.dart' show AppConstants, HiveService;
+import '/features/_features.dart' show NewsScreen, NewsDetailsScreen, Article;
 
 final newsScreenRoutes = [
   GoRoute(
@@ -14,15 +15,55 @@ final newsScreenRoutes = [
         path: NewsDetailsScreen.routePath,
         name: NewsDetailsScreen.routeName,
         pageBuilder: (context, state) {
-          final id = state.pathParameters['id']!;
-          final article = context.read<NewsCubit>().findArticleById(id);
+          final article = state.extra as Article?;
 
-          // store the article in the local database
-          // and then use it here
-
-          return CupertinoPage(child: NewsDetailsScreen(article: article));
+          return CupertinoPage(
+            child: _NewsDetailsPageFromCache(
+              fallbackId: state.pathParameters['id']!,
+              article: article,
+            ),
+          );
         },
       ),
     ],
   ),
 ];
+
+class _NewsDetailsPageFromCache extends StatelessWidget {
+  final String fallbackId;
+  final Article? article;
+
+  const _NewsDetailsPageFromCache({required this.fallbackId, this.article});
+
+  @override
+  Widget build(BuildContext context) {
+    if (article != null) {
+      final service = HiveService<Article>(AppConstants.detailsNews);
+      service.init().then((_) {
+        service.put(AppConstants.lastViewedNews, article!);
+      });
+      return NewsDetailsScreen(article: article!);
+    }
+
+    final service = HiveService<Article>(AppConstants.detailsNews);
+
+    return FutureBuilder(
+      future: service.init(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
+
+        final cachedArticle = service.get(AppConstants.lastViewedNews);
+
+        if (cachedArticle == null) {
+          return const Scaffold(body: Center(child: Text("Article not found")));
+        }
+
+        return NewsDetailsScreen(article: cachedArticle);
+      },
+    );
+  }
+}

@@ -6,7 +6,6 @@ import '/features/_features.dart'
         News,
         NewsMapper,
         NewsModel,
-        Article,
         TopHeadlinesQueryParameters,
         GetTopHeadlinesNewsUseCase;
 
@@ -22,33 +21,18 @@ class NewsCubit extends HydratedCubit<NewsState> {
     if (state is NewsLoaded) {
       final loadedState = state as NewsLoaded;
       final isExpired =
-          DateTime.now().difference(loadedState.timestamp).inMinutes > 5;
-      if (!isExpired) {
-        // Use cached data
-        return;
-      }
+          DateTime.now().difference(loadedState.timestamp).inMinutes > 10;
+      if (!isExpired) return;
     }
 
     emit(NewsLoading());
+
     final result = await getTopHeadlinesNewsUseCase(queryParameters);
 
     result.fold(
       (failure) => emit(NewsError(failure.error)),
       (news) => emit(NewsLoaded(news)),
     );
-  }
-
-  Article findArticleById(String id) {
-    if (state is NewsLoaded) {
-      final news = (state as NewsLoaded).news;
-      try {
-        return news.articles.firstWhere((article) => article.uuid == id);
-      } catch (_) {
-        return Article.empty;
-      }
-    }
-
-    return Article.empty;
   }
 
   @override

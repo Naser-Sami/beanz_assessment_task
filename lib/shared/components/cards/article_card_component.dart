@@ -18,6 +18,7 @@ class ArticleCardComponent extends StatelessWidget {
         context.goNamed(
           NewsDetailsScreen.routeName,
           pathParameters: {'id': article.uuid},
+          extra: article,
         );
       },
       child: Container(

@@ -15,6 +15,7 @@ class NewsDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print('article: $article');
     return Scaffold(
       appBar: AppBar(title: const Text("News Details")),
       body: CustomPadding(

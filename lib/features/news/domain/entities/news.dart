@@ -1,10 +1,19 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
 import 'article.dart';
 
+part 'news.g.dart';
+
+@HiveType(typeId: 0)
 class News extends Equatable {
+  @HiveField(0)
   final String status;
+
+  @HiveField(1)
   final int totalResults;
+
+  @HiveField(2)
   final List<Article> articles;
 
   const News({
