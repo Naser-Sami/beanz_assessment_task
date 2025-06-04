@@ -1,0 +1,16 @@
+import 'package:equatable/equatable.dart';
+
+class Source extends Equatable {
+  final String? id;
+  final String? name;
+
+  const Source({required this.id, required this.name});
+
+  static const empty = Source(id: '', name: '');
+
+  Source copyWith({String? id, String? name}) =>
+      Source(id: id ?? this.id, name: name ?? this.name);
+
+  @override
+  List<Object?> get props => [id, name];
+}
