@@ -18,12 +18,12 @@ class NewsCubit extends HydratedCubit<NewsState> {
   Future<void> getTopHeadlinesNews(
     TopHeadlinesQueryParameters queryParameters,
   ) async {
-    if (state is NewsLoaded) {
-      final loadedState = state as NewsLoaded;
-      final isExpired =
-          DateTime.now().difference(loadedState.timestamp).inMinutes > 10;
-      if (!isExpired) return;
-    }
+    // if (state is NewsLoaded) {
+    //   final loadedState = state as NewsLoaded;
+    //   final isExpired =
+    //       DateTime.now().difference(loadedState.timestamp).inMinutes > 10;
+    //   if (!isExpired) return;
+    // }
 
     emit(NewsLoading());
 

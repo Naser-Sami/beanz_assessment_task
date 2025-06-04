@@ -10,7 +10,7 @@ class TopHeadlinesQueryParameters {
   TopHeadlinesQueryParameters({
     this.country = 'us',
     this.category = '',
-    this.pageSize = 10,
+    this.pageSize = 12,
     this.page = 1,
     this.apiKey,
   });
