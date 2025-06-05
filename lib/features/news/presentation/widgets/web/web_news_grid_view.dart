@@ -10,26 +10,26 @@ class WebNewsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        key: const ValueKey('web_news_grid_view'),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          mainAxisSpacing: TPadding.p24,
-          crossAxisSpacing: TPadding.p24,
-          mainAxisExtent: 396,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: TPadding.p160),
-        itemCount: articles.length,
-        itemBuilder: (context, index) {
-          final article = articles[index];
-
-          return ArticleCardComponent(
-            key: ValueKey(article.title + article.publishedAt),
-            article: article,
-          );
-        },
+    return GridView.builder(
+      key: const ValueKey('web_news_grid_view'),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        mainAxisSpacing: TPadding.p24,
+        crossAxisSpacing: TPadding.p24,
+        mainAxisExtent: 396,
       ),
+      padding: const EdgeInsets.symmetric(horizontal: TPadding.p160),
+      itemCount: articles.length,
+      itemBuilder: (context, index) {
+        final article = articles[index];
+
+        return ArticleCardComponent(
+          key: ValueKey(article.uuid),
+          article: article,
+        );
+      },
     );
   }
 }

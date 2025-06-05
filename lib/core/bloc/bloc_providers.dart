@@ -9,7 +9,8 @@ final providers = [
   BlocProvider<ThemeCubit>(create: (context) => sl<ThemeCubit>()),
   BlocProvider<NewsCubit>(
     create: (context) =>
-        sl<NewsCubit>()..getTopHeadlinesNews(TopHeadlinesQueryParameters()),
+        sl<NewsCubit>()
+          ..loadPage(page: 1, baseParams: TopHeadlinesQueryParameters()),
   ),
   BlocProvider<SearchBloc>(create: (context) => sl<SearchBloc>()),
 ];

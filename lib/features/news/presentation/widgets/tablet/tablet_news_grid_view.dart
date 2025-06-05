@@ -11,26 +11,26 @@ class TabletNewsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        key: const ValueKey('tablet_news_grid_view'),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: context.width >= 1024 ? 3 : 2,
-          mainAxisSpacing: TPadding.p20,
-          crossAxisSpacing: TPadding.p20,
-          mainAxisExtent: 396,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: TPadding.p80),
-        itemCount: articles.length,
-        itemBuilder: (context, index) {
-          final article = articles[index];
-
-          return ArticleCardComponent(
-            key: ValueKey(article.title + article.publishedAt),
-            article: article,
-          );
-        },
+    return GridView.builder(
+      key: const ValueKey('tablet_news_grid_view'),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: context.width >= 1024 ? 3 : 2,
+        mainAxisSpacing: TPadding.p20,
+        crossAxisSpacing: TPadding.p20,
+        mainAxisExtent: 396,
       ),
+      padding: const EdgeInsets.symmetric(horizontal: TPadding.p80),
+      itemCount: articles.length,
+      itemBuilder: (context, index) {
+        final article = articles[index];
+
+        return ArticleCardComponent(
+          key: ValueKey(article.uuid),
+          article: article,
+        );
+      },
     );
   }
 }

@@ -10,11 +10,11 @@ class WebNewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
         const HeaderTextTitle(),
         WebNewsGridView(articles: articles),
+        const PagesButtons(),
       ],
     );
   }

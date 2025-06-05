@@ -15,24 +15,38 @@ class NewsCubit extends HydratedCubit<NewsState> {
   final GetTopHeadlinesNewsUseCase getTopHeadlinesNewsUseCase;
   NewsCubit(this.getTopHeadlinesNewsUseCase) : super(NewsInitial());
 
-  Future<void> getTopHeadlinesNews(
-    TopHeadlinesQueryParameters queryParameters,
-  ) async {
-    // if (state is NewsLoaded) {
-    //   final loadedState = state as NewsLoaded;
-    //   final isExpired =
-    //       DateTime.now().difference(loadedState.timestamp).inMinutes > 10;
-    //   if (!isExpired) return;
-    // }
+  int totalPages = 0;
 
-    emit(NewsLoading());
+  Future<void> loadPage({
+    required int page,
+    TopHeadlinesQueryParameters? baseParams,
+    bool append = false,
+  }) async {
+    final previousState = state;
 
-    final result = await getTopHeadlinesNewsUseCase(queryParameters);
+    if (previousState is NewsLoaded && append) {
+      emit(NewsLoadingMore(previousState.news));
+    } else {
+      emit(NewsLoading());
+    }
 
-    result.fold(
-      (failure) => emit(NewsError(failure.error)),
-      (news) => emit(NewsLoaded(news)),
+    final params = baseParams?.copyWith(page: page);
+    final result = await getTopHeadlinesNewsUseCase(
+      params ?? TopHeadlinesQueryParameters(),
     );
+
+    result.fold((failure) => emit(NewsError(failure.error)), (newNews) {
+      totalPages = (newNews.totalResults / (params?.pageSize ?? 10)).ceil();
+
+      if (previousState is NewsLoaded && append) {
+        final currentNews = previousState.news;
+        final combinedArticles = [...currentNews.articles, ...newNews.articles];
+        final merged = currentNews.copyWith(articles: combinedArticles);
+        emit(NewsLoaded(merged, currentPage: page));
+      } else {
+        emit(NewsLoaded(newNews, currentPage: page));
+      }
+    });
   }
 
   @override

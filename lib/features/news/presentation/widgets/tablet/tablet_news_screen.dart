@@ -11,11 +11,11 @@ class TabletNewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
         const HeaderTextTitle(),
         TabletNewsGridView(articles: articles),
+        const PagesButtons(),
       ],
     );
   }
