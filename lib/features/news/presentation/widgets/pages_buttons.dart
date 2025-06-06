@@ -27,7 +27,6 @@ class _PagesButtonsState extends State<PagesButtons> {
     _currentPage.value = page;
 
     context.read<NewsCubit>().loadPage(
-      page: page,
       append: false,
       baseParams: TopHeadlinesQueryParameters(page: page),
     );

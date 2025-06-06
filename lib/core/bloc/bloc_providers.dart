@@ -10,7 +10,7 @@ final providers = [
   BlocProvider<NewsCubit>(
     create: (context) =>
         sl<NewsCubit>()
-          ..loadPage(page: 1, baseParams: TopHeadlinesQueryParameters()),
+          ..loadPage(baseParams: TopHeadlinesQueryParameters(page: 1)),
   ),
   BlocProvider<SearchBloc>(create: (context) => sl<SearchBloc>()),
 ];

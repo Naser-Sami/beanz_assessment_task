@@ -41,7 +41,6 @@ class _MobileNewsListViewState extends State<MobileNewsListView> {
 
           cubit
               .loadPage(
-                page: page,
                 baseParams: TopHeadlinesQueryParameters(page: page),
                 append: true,
               )

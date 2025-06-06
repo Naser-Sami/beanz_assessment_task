@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/features/_features.dart' show SearchBloc, SearchState, SearchInitial;
 import '/shared/_shared.dart' show MainAppBar;
-import 'searched_body/searched_news_body.dart';
 import 'news_body/news_body.dart';
+import 'searched_body/searched_news_body.dart';
 
 class NewsScreen extends StatefulWidget {
   static const routePath = '/news';

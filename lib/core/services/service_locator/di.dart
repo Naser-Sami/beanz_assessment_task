@@ -13,7 +13,7 @@ class DI {
   Future<void> init() async {
     initDio();
     await initializeHive();
-    initDataSources();
+    await initDataSources();
     initRepositories();
     initUseCases();
     initControllers();
