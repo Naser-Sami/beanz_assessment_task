@@ -35,7 +35,7 @@ class _MobileNewsListViewState extends State<MobileNewsListView> {
 
       if (state is NewsLoaded) {
         final page = state.currentPage + 1;
-        if (page <= cubit.totalPages) {
+        if (page <= state.totalPages) {
           _isLoading = true;
           _showLoading.value = true;
 

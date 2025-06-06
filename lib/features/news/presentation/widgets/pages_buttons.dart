@@ -22,7 +22,10 @@ class _PagesButtonsState extends State<PagesButtons> {
   final _currentPage = ValueNotifier<int>(1);
 
   void _goToPage(int page) {
+    if (_currentPage.value == page) return;
+
     _currentPage.value = page;
+
     context.read<NewsCubit>().loadPage(
       page: page,
       append: false,
@@ -31,8 +34,17 @@ class _PagesButtonsState extends State<PagesButtons> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _currentPageListener();
+  }
+
+  void _currentPageListener() {
     final cubit = context.read<NewsCubit>();
     final state = cubit.state;
     if (state is NewsLoaded) {
@@ -46,9 +58,7 @@ class _PagesButtonsState extends State<PagesButtons> {
       buildWhen: (prev, curr) => curr is NewsLoaded || curr is NewsLoading,
       builder: (context, state) {
         if (state is! NewsLoaded) return const SizedBox.shrink();
-
-        final cubit = context.read<NewsCubit>();
-        final totalPages = cubit.totalPages;
+        final totalPages = state.totalPages;
 
         return CustomPadding(
           child: ValueListenableBuilder<int>(

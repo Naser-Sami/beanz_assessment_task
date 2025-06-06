@@ -15,20 +15,31 @@ class NewsLoaded extends NewsState {
   final News news;
   final int currentPage;
   final DateTime timestamp;
+  final int totalPages;
 
-  NewsLoaded(this.news, {this.currentPage = 1, DateTime? timestamp})
-    : timestamp = timestamp ?? DateTime.now();
+  NewsLoaded(
+    this.news, {
+    this.currentPage = 1,
+    DateTime? timestamp,
+    this.totalPages = 0,
+  }) : timestamp = timestamp ?? DateTime.now();
 
-  NewsLoaded copyWith({News? news, int? currentPage, DateTime? timestamp}) {
+  NewsLoaded copyWith({
+    News? news,
+    int? currentPage,
+    DateTime? timestamp,
+    int? totalPages,
+  }) {
     return NewsLoaded(
       news ?? this.news,
       currentPage: currentPage ?? this.currentPage,
       timestamp: timestamp ?? this.timestamp,
+      totalPages: totalPages ?? this.totalPages,
     );
   }
 
   @override
-  List<Object> get props => [news, currentPage, timestamp];
+  List<Object> get props => [news, currentPage, timestamp, totalPages];
 }
 
 class NewsLoadingMore extends NewsState {
