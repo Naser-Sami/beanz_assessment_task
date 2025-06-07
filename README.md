@@ -168,6 +168,11 @@ flutter run
 Example .env file:
 NEWS_API_KEY=your_api_key_here
 
+# 📸 Screenshots
+
+<img width="2056" alt="Screenshot 2025-06-05 at 9 16 09 PM" src="https://github.com/user-attachments/assets/73723ab1-2a2d-4486-ac84-d97abdb5ed63" />
+<img width="2056" alt="Screenshot 2025-06-06 at 10 43 33 PM" src="https://github.com/user-attachments/assets/9b947064-b28e-4792-80fd-8a35d75e53cd" />
+
 👨‍💻 Author
 Made with ❤️ by Naser Sami 🚀
 GitHub: Naser-Sami
