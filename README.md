@@ -169,7 +169,10 @@ Example .env file:
 NEWS_API_KEY=your_api_key_here
 
 👨‍💻 Author
-Made with ❤️ by Naser Sami
+Made with ❤️ by Naser Sami 🚀
 GitHub: Naser-Sami
+
+🌐 GitHub Link:
+https://github.com/Naser-Sami
 
 > 🔔 **Note:** Create a `.env` file at the project root and ensure it's not pushed to GitHub by adding it to `.gitignore`.
