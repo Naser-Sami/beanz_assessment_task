@@ -55,25 +55,45 @@ A **responsive Flutter App** that fetches and displays news articles from [NewsA
 
 lib/
 ├── config/ # Adaptive Design, Routing, Theme, Typography, Dimensions
+
 ├── core/ # Constants, Services, Extensions, Utilities
+
 ├── shared/ # Reusable widgets and components
+
 ├── features/ # Feature-based structure
+
 │ ├── data/
+
 │ │ ├── data_source/ # Local and Remote sources
+
 │ │ ├── mapper/ # Entity-Model mapping
+
 │ │ ├── models/
+
 │ │ └── repository/ # Implementation of repositories
+
 │ ├── domain/
+
 │ │ ├── entities/
+
 │ │ ├── params/
+
 │ │ ├── queries/
+
 │ │ ├── repository/ # Abstract repository interface
+
 │ │ └── usecases/
+
 │ └── presentation/
+
 │ ├── controllers/ # Bloc, Cubit, etc.
+
 │ ├── screens/
+
 │ └── widgets/
-├── app.dart  
+
+├── app.dart
+
 └── main.dart # App entry point
 
 ---
@@ -117,49 +137,29 @@ dev_dependencies:
 • IDE (VS Code / Android Studio)
 • Internet access to fetch news from the API
 
-# Clone the repo
+# 🔧 Setup & Run
+
+## Clone the repo
 
 git clone https://github.com/Naser-Sami/beanz_assessment_task.git
 
-# Navigate into the project directory
+## Navigate into the project directory
 
 cd beanz_assessment_task
 
-# Install dependencies
+## Install dependencies
 
 flutter pub get
 
-# Run the app (for Web)
+## Run the app (for Web)
 
 flutter run -d chrome
 
-# Or run on a connected Android/iOS device
+## Or run on a connected Android/iOS device
 
 flutter run
 
 ---
-
-🔧 Setup & Run
-
-# Clone the repo
-
-git clone https://github.com/Naser-Sami/beanz_assessment_task.git
-
-# Navigate into the project directory
-
-cd beanz_assessment_task
-
-# Install dependencies
-
-flutter pub get
-
-# Run the app (for Web)
-
-flutter run -d chrome
-
-# Or run on a connected Android/iOS device
-
-flutter run
 
 🌐 API
 • Uses NewsAPI.org
@@ -171,6 +171,7 @@ NEWS_API_KEY=your_api_key_here
 # 📸 Screenshots
 
 <img width="2056" alt="Screenshot 2025-06-05 at 9 16 09 PM" src="https://github.com/user-attachments/assets/73723ab1-2a2d-4486-ac84-d97abdb5ed63" />
+
 <img width="2056" alt="Screenshot 2025-06-06 at 10 43 33 PM" src="https://github.com/user-attachments/assets/9b947064-b28e-4792-80fd-8a35d75e53cd" />
 
 👨‍💻 Author
@@ -179,5 +180,8 @@ GitHub: Naser-Sami
 
 🌐 GitHub Link:
 https://github.com/Naser-Sami
+
+🌐 Web Link:
+https://deploy-beanz-assessment-task.vercel.app/news
 
 > 🔔 **Note:** Create a `.env` file at the project root and ensure it's not pushed to GitHub by adding it to `.gitignore`.
